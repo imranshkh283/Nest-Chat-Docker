@@ -36,6 +36,10 @@ Ensure that Docker is installed on your machine. Then, run the following command
 docker-compose up --build
 ```
 
+```bash
+docker run --name docker-mongo -p 27017:27017 -d mongo
+```
+
 This command will build and start the Docker containers, including MongoDB, Redis, and the NestJS application.
 
 If you encounter any issues or need to perform additional steps, please refer to the project documentation.

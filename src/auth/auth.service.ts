@@ -30,7 +30,7 @@ export class AuthService {
     return { message: 'Registration successful', newUserId: newUserId };
   }
 
-  async userExists(username: string) {
+  async userExists(username: string): Promise<void> {
     const existingUser = await this.usersService.findOne(username);
 
     let userExist = false;
