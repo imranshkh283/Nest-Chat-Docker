@@ -22,7 +22,6 @@ export class UsersService {
   }
 
   async updateAbout(userId: string, aboutData: Partial<User>): Promise<void> {
-    console.log('user_id', userId);
     await this.userModel.findOneAndUpdate({ _id: userId }, aboutData).exec();
   }
 

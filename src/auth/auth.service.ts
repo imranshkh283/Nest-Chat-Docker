@@ -21,16 +21,25 @@ export class AuthService {
     const { username, password } = registerDto;
 
     // Check if the username is already taken
-    const existingUser = await this.usersService.findOne(username);
-    if (existingUser) {
-      throw new ConflictException('Username already exists');
-    }
+    await this.userExists(username);
 
     // If the username is not taken, create a new user
     // await this.usersService.createUser(username, password);
     const newUserId = await this.usersService.createUser(username, password);
 
     return { message: 'Registration successful', newUserId: newUserId };
+  }
+
+  async userExists(username: string) {
+    const existingUser = await this.usersService.findOne(username);
+
+    let userExist = false;
+    if (existingUser) {
+      userExist = true;
+    }
+    if (userExist) {
+      throw new ConflictException('Username already exists');
+    }
   }
 
   async signIn(
